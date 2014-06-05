@@ -1,0 +1,18 @@
+school management information system
+
+users:
+-students
+-teachers
+-admin
+
+features:
+-register a school *admin
+-subject plotting form *students
+-user profile *any
+-grading system *teachers
+-messages *any
+-online exercises *teachers and studetns
+-announcement *admin
+-facilitate courses *admin
+-banning a user from accessing certain features of the system *admin
+-explore
