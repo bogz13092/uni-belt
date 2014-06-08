@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="ngbootstrapmod">
+<head>
+  <title>Hhihi</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="../angular-1.2.9/angular.js"></script>
+  <script src="./ui-bootstrap-tpls-0.11.0.js"></script>
+  <script>
+    angular.module('ngbootstrapmod',['ui.bootstrap']);
+    function AccordionCtrl($scope){
+      $scope.oneAtATime = true;
+      $scope.groups = [
+        {title:'Title 1',content:'Content 1'},
+        {title:'Title 2',content:'Content 2'},
+      ]
+    }
+    function CarouselCtrl($scope){
+      $scope.myInterval = 1500;
+      var newWidth = 600 + 2;
+      $scope.slides = [
+      {image:'http://placekitten.com/' + newWidth + '/300',text:'Img 0'},
+      {image:'http://placekitten.com/' + newWidth + '/300',text:'Img 1'},
+      {image:'http://placekitten.com/' + newWidth + '/300',text:'Img 2'},
+        
+      ]
+    }
+    function ModalCtrl($scope,$modal){
+      var option = {
+       templateUrl:'../tpl.html',
+       size:'sm'
+      }
+      $modal.open(option);
+    }
+  </script>
+  
+  <style>
+     .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <nav ng-controller="AccordionCtrl">
+    <accordion close-others="oneAtAtime">
+      <accordion-group heading="Static Header" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+	This is first.
+      </accordion-group>
+      <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+	{{group.content}}
+      </accordion-group>
+    </accordion>
+  </nav>
+  <div ng-controller="CarouselCtrl">
+   <carousel interval="myInterval">
+     <slide ng-repeat="slide in slides" active="slide.active">
+       <img ng-src="{{slide.image}}" style="margin:auto;"/>
+       <div class="carousel-caption">
+	 <div>Slide {{$index}}</div>
+	 <p>{{slide.text}}</p>
+       </div>
+     </slide>
+   </carousel>
+  </div>
+  <div ng-controller="ModalCtrl"></div> 
+</body>
+</html>
